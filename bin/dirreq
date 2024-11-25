@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "librarian" # Load your gem's code
+
+# Define the behavior of your executable
+puts "Librarian gem is ready to organize your files!"
