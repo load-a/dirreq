@@ -17,7 +17,8 @@ module DirReq
     require load_first if load_first
 
     files = collect_file_paths(directory)
-            .reject { |file| ignore.include?(File.basename(file)) }
+
+    files.reject! { |file| ignore.include?(file) }
 
     files.each { |file| require file }
   rescue LoadError => e
@@ -36,7 +37,7 @@ module DirReq
   # @param error [LoadError] The encountered error.
   # @return [void]
   def handle_load_error(directory, error)
-    puts "Failed to load files in: #{directory}"
+    puts "Failed to load files in: #{directory}", "Current Working Directory: #{Dir.pwd}"
     puts "Error: #{error.message}"
     raise error
   end
